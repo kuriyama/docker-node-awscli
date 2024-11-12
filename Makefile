@@ -21,6 +21,7 @@ etag:
 	grep ^ETag | uniq | sed -e 's|^ETag: ||' | jq -r . > .etag-awscli
 
 check:
-	@if git status -s | grep -q M; then\
-		git add .etag-awscli .id-node-* && git commit -m "Update IDs."; git push;\
+	@-./prepare-log-message.sh
+	@if [ -s .log-message ]; then\
+		git add `cat .log-files` && git commit -F .log-message && git push;\
 	fi

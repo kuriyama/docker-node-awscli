@@ -6,7 +6,7 @@ rm -f .log-msg-* .log-message
 parts=""
 files=""
 
-grep -q .etag-awscli .log-work && { parts="awscli"; files=".etag-awscli"; (echo -n "awscli: "; cat .etag-awscli) > .log-msg-awscli; }
+grep -q .etag-awscli .log-work && { parts=" awscli"; files=".etag-awscli"; (echo -n "awscli: "; cat .etag-awscli) > .log-msg-awscli; }
 ls .id-node-?? | sed -e 's|.id-node-||' > .log-versions
 while read v; do
 	grep -q .id-node-$v .log-work && { parts="$parts node-$v"; files="$files .id-node-$v"; (echo -n "node-$v: "; cat .id-node-$v) > .log-msg-node-$v; }
